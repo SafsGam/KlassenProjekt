@@ -7,10 +7,21 @@
     
 </head>
 <body>
+    <h1>Meine Aufgaben</h1>
+    <ul id="taskList"></ul>
+        <!-- Aufgaben werden hier angezeigt -->
     <script>
-        fetch("api.php"){
-            
-        }
+        fetch("api.php")
+        .then(response => response.json())
+        .then(data => {
+            const list = document.getElementById("taskList");
+            data.forEach(task => {
+                const li = document.createElement("li");
+                li.textContent = task.title + (task.completed ? " (erledigt)" : " (offen)");
+                list.appendChild(li);
+            });
+        })
+        .catch(error => console.error("Fehler beim Laden der Aufgaben:", error));
     </script>
 </body>
 </html>
