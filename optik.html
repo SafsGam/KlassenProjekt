@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Formatierungsliste PHP zu Json">
+        <title>Proyecto de clase</title>
+    </head>
+    <body>
+ <h1>Proyecto de clase</h1>
+ <ul id="list"> </ul>
+
+ <!-- Die Verbindungsbrücke der API - Frontend -->
+ <script>
+  fetch("api/tasks.php")           // 1. Anfrage an PHP Data
+  .then(response => response.json())  // 2. umwandlung der Antwort in JSON-Format
+  .then(data => {         // 3. Data erhalten und weiterverarbeiten
+        const list = document.getElementById("list");
+
+        data.forEach(task => {
+            const li = document.createElement("li");
+            li.textContent = task.title;
+            list.appendChild(li);
+        });
+    })
+    </script>
+
+    </body>
+</html>
