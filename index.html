@@ -2,14 +2,38 @@
 <html>
 <head>
     <style>
-li::before {
-    content: "✔ " ;
-    color: white;
-    background: #4caf50;
+li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.custom-checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #4CAF50;
     border-radius: 50%;
-    padding: 2px 6px;
-    margin-right: 10px;
-    font-size: 12px;
+    cursor: pointer;
+    position: relative;
+}
+
+.custom-checkbox:checked {
+    background-color: #4CAF50;
+}
+
+.custom-checkbox:checked::after {
+    content: "✔";
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+    left: 4px;
+}
+
+.done {
+    text-decoration: line-through;
+    color: gray;
 }
     body {
         font-family: Arial, sans-serif;
@@ -62,6 +86,32 @@ li:hover {
 <ul id="list"></ul>
 
 <script>
+
+fetch("api/tasks.php")
+    .then(response => response.json())
+    .then(data => {
+        const list = document.getElementById("list");
+
+        data.forEach(task => {
+            const li = document.createElement("li");
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.classList.add("custom-checkbox");
+
+            const span = document.createElement("span");
+            span.textContent = task.title;
+
+            checkbox.addEventListener("change", () => {
+                span.classList.toggle("done");
+            });
+
+            li.appendChild(checkbox);
+            li.appendChild(span);
+            list.appendChild(li);
+        });
+    });
+
 fetch("http://localhost/kontakt_app/klassenprojekt/tasks.php")
     .then(response => response.json())
     .then(data => {
