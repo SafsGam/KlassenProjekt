@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aufgabenliste</title>
+</head>
+<body>
+
+<h1>Aufgabenliste</h1>
+
+<ul id="list"></ul>
+
+<script>
+fetch("/kontakt_app/klassenprojekt/tasks")
+    .then(response => response.json())
+    .then(data => {
+        const list = document.getElementById("list");
+
+        data.forEach(task => {
+            const li = document.createElement("li");
+            li.textContent = task.title;
+            list.appendChild(li);
+        });
+    })
+    .catch(error => console.error("Fehler", error));
+
+</script>
+
+</body>
+</html>
