@@ -10,7 +10,7 @@
 <ul id="list"></ul>
 
 <script>
-fetch("/kontakt_app/klassenprojekt/tasks")
+fetch("http://localhost/kontakt_app/klassenprojekt/tasks.php")
     .then(response => response.json())
     .then(data => {
         const list = document.getElementById("list");
