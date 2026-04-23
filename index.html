@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="tx.exe1 - Proyecto de clase">
+        <title>tx.exe1</title>
+        <style>
+            body {
+                font-family: sans-serif;
+                max-width: 800px;
+                margin: 40px auto;
+                padding: 0 20px;
+                background-color: #f9f9f9;
+                color: #222;
+                line-height: 1.7;
+            }
+
+            header {
+                border-bottom: 2px solid #222;
+                padding-bottom: 16px;
+                margin-bottom: 30px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                margin-bottom: 4px;
+            }
+
+            header p {
+                color: #666;
+                font-size: 0.95rem;
+                margin: 0;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+                margin-top: 30px;
+                margin-bottom: 8px;
+                color: #444;
+            }
+
+            p {
+                margin-bottom: 14px;
+            }
+
+            .nav-cards {
+                display: flex;
+                gap: 14px;
+                margin-top: 30px;
+                flex-wrap: wrap;
+            }
+
+            .card {
+                flex: 1;
+                min-width: 200px;
+                background: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 18px 20px;
+                text-decoration: none;
+                color: #222;
+                transition: border-color 0.2s, transform 0.2s;
+            }
+
+            .card:hover {
+                border-color: #222;
+                transform: translateY(-2px);
+            }
+
+            .card .card-title {
+                font-weight: bold;
+                font-size: 1rem;
+                margin-bottom: 6px;
+            }
+
+            .card .card-desc {
+                font-size: 0.88rem;
+                color: #666;
+            }
+
+            footer {
+                margin-top: 50px;
+                border-top: 1px solid #ddd;
+                padding-top: 14px;
+                font-size: 0.85rem;
+                color: #999;
+            }
+        </style>
+    </head>
+    <body>
+
+        <header>
+            <h1>tx.exe1</h1>
+            <p>Proyecto de clase</p>
+        </header>
+
+        <h2>Was ist tx.exe?</h2>
+        <p>tx.exe ist ein Schulprojekt das im Rahmen der Ausbildung zum Fachinformatiker Anwendungsentwicklung entstanden ist. Ziel war es eine kleine Webanwendung zu bauen die verschiedene Kernkonzepte der modernen Webentwicklung verbindet – von der serverseitigen Datenverarbeitung mit PHP über die Kommunikation via JSON bis hin zu einem KI-gestützten Chatbot.</p>
+
+        <h2>Die Idee dahinter</h2>
+        <p>Der Ausgangspunkt war eine einfache Frage: Wie kommunizieren Frontend und Backend miteinander? Anstatt das nur theoretisch zu beantworten haben wir es direkt gebaut. PHP übernimmt die serverseitige Logik, JSON dient als Austauschformat zwischen den Systemen, und JavaScript verbindet alles im Browser. Als Erweiterung kommt ein Chatbot dazu der über eine externe KI-API (Google Gemini) echte Antworten generiert – womit der Weg von einer simplen Aufgabenliste bis zur KI-Integration sichtbar wird.</p>
+
+        <h2>Was steckt drin?</h2>
+        <p>Das Projekt besteht aus drei Bereichen: einer Lernseite die den kompletten Datenweg von der Datenbank bis zum Browser erklärt, einer PHP API die Daten als JSON ausgibt, und einem Chatbot der Fragen beantwortet und Textdateien verarbeiten kann. Git wurde durchgehend für die Versionskontrolle genutzt, mit separaten Branches für Frontend und Backend.</p>
+
+        <div class="nav-cards">
+            <a href="index.html" class="card">
+                <div class="card-title">PHP &rarr; JSON &rarr; HTML</div>
+                <div class="card-desc">Erklärung des kompletten Datenwegs von der Datenbank bis zum Browser.</div>
+            </a>
+            <a href="chatbot.html" class="card">
+                <div class="card-title">KI Chatbot</div>
+                <div class="card-desc">Stelle Fragen oder lade eine Textdatei hoch – powered by Google Gemini.</div>
+            </a>
+        </div>
+
+        <footer>
+            Erstellt von Harun-Emre Yalcinkaya, am 23.04.2026
+        </footer>
+
+    </body>
+</html>

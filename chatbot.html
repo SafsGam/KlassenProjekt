@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chatbot</title>
+        <style>
+            body {
+                font-family: sans-serif;
+                max-width: 700px;
+                margin: 40px auto;
+                padding: 0 20px;
+                background-color: #f9f9f9;
+                color: #222;
+            }
+
+            h1 {
+                border-bottom: 2px solid #222;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+            }
+
+            #chat-box {
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                padding: 14px;
+                min-height: 200px;
+                background: #fff;
+                margin-bottom: 14px;
+            }
+
+            .message {
+                margin-bottom: 10px;
+            }
+
+            .user { color: #0066cc; }
+            .bot  { color: #222; }
+
+            input[type="text"] {
+                width: 75%;
+                padding: 8px;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                font-size: 1rem;
+            }
+
+            button {
+                padding: 8px 16px;
+                background: #222;
+                color: #fff;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Chatbot</h1>
+
+        <!-- Hier erscheinen die Nachrichten -->
+        <div id="chat-box"></div>
+
+        <!-- Eingabefeld und Button -->
+        <input type="text" id="user-input" placeholder="Stelle eine Frage...">
+        <button onclick="sendMessage()">Senden</button>
+
+        <script>
+            async function sendMessage() {
+                // Nachricht des Users aus dem Eingabefeld holen
+                const input = document.getElementById("user-input");
+                const message = input.value.trim();
+
+                // Nichts schicken wenn das Feld leer ist
+                if (!message) return;
+
+                // Nachricht des Users im Chat anzeigen
+                addMessage("Du: " + message, "user");
+                input.value = "";
+
+                // Anfrage an chat.php schicken
+                const response = await fetch("../connection/chat.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+
+                // Antwort des Chatbots im Chat anzeigen
+                addMessage("Bot: " + data.answer, "bot");
+            }
+
+            // Hilfsfunktion um eine Nachricht ins Chat-Fenster einzufügen
+            function addMessage(text, sender) {
+                const chatBox = document.getElementById("chat-box");
+                const div = document.createElement("div");
+                div.className = "message " + sender;
+                div.textContent = text;
+                chatBox.appendChild(div);
+
+                // Automatisch nach unten scrollen
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        </script>
+    </body>
+</html>
